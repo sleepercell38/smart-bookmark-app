@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 🔖 Smart Bookmark App
 
-## Getting Started
+A modern, real-time bookmark manager built with Next.js and Supabase.
+This is a Screening Task From Abstrabit Technologies 
 
-First, run the development server:
+## Challenges & How I Solved Them
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 1. Realtime updates were not working initially
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+At first, I assumed the issue was with Supabase Realtime configuration or replication settings. I checked publications and replication multiple times.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+However, I later realized that newer Supabase projects already have replication enabled by default.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The actual problem was in my `useEffect` logic. The subscription was being created before the user state was properly available, and my dependency array was not set correctly. Because of that, the UI wasn’t updating consistently.
 
-## Learn More
+To fix this, I:
+ Ensured the subscription runs only after the authenticated user is available
+ Corrected the `useEffect` dependency array
+ Properly cleaned up the realtime channel on component unmount
+After fixing the lifecycle handling, realtime updates worked correctly across multiple tabs.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2. OAuth redirect issues in production
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Authentication worked locally but failed after deploying to Vercel.
 
-## Deploy on Vercel
+The issue was caused by missing production URLs in Supabase Auth settings. The redirect URL and site URL were not configured for the deployed domain.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+I resolved this by:
+ Adding the Vercel production URL to the Site URL setting
+ Adding the correct redirect path in the Redirect URLs section
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+After updating these settings, Google OAuth worked correctly in production.

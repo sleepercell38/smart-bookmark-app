@@ -110,7 +110,7 @@ export default function Home() {
               <span className="text-xl font-bold">Smart BookMark App</span>
             </div>
             <div className="flex items-center gap-4">
-              <a href="#" className="text-muted-foreground hover:text-foreground">
+              <a href="https://github.com/sleepercell38/smart-bookmark-app" className="text-muted-foreground hover:text-foreground">
                 <Github className="w-5 h-5" />
               </a>
             </div>
