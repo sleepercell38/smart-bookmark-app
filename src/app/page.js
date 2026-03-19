@@ -8,8 +8,6 @@ import {
   Bookmark, 
   Chrome, 
   Sparkles, 
-  Shield, 
-  Zap, 
   ArrowRight,
   Github,
   Twitter
