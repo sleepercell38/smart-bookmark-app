@@ -17,7 +17,6 @@ import {
   FolderOpen,
   Sparkles,
   Copy,
-
   Check,
   Grid3X3,
   List
