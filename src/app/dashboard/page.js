@@ -557,11 +557,6 @@ export default function Dashboard() {
             </AnimatePresence>
           </motion.div>
         </main>
-
-        {/* Footer */}
-        <footer className="mt-auto py-8 text-center text-muted-foreground text-sm">
-
-        </footer>
       </div>
     </>
   )
