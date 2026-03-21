@@ -10,12 +10,12 @@ import {
   Sparkles, 
   ArrowRight,
   Github,
-  Twitter
+
 } from 'lucide-react'
 import toast, { Toaster } from 'react-hot-toast'
 
 export default function Home() {
-  
+
   const router = useRouter()
   const [isLoading, setIsLoading] = useState(false)
   const [isChecking, setIsChecking] = useState(true)
