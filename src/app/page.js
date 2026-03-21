@@ -51,8 +51,6 @@ export default function Home() {
       setIsLoading(false)
     }
   }
-
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
